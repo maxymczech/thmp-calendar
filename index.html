@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Kalendář svícení Petřínské rozhledny</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="./main.css">
+  </head>
+  <body>
+    <div class="calendar-items">
+      <a href="#czech" class="calendar-item" data-color-scheme="czech">
+        <strong class="calendar-item-title">Česká vlajka</strong>
+        <span class="calendar-item-date">2022.03.28</span>
+        <span class="calendar-item-img"><img src="./images/flag-cz.png" alt=""></span>
+      </a>
+      <a href="#ukraine" class="calendar-item" data-color-scheme="ukraine">
+        <strong class="calendar-item-title">Ukrajina</strong>
+        <span class="calendar-item-date">2022.04.02</span>
+        <span class="calendar-item-img"><img src="./images/flag-ua.png" alt=""></span>
+      </a>
+      <a href="#lgbt" class="calendar-item" data-color-scheme="lgbt">
+        <strong class="calendar-item-title">LGBT Pride</strong>
+        <span class="calendar-item-date">2022.04.16</span>
+        <span class="calendar-item-img"><img src="./images/flag-lgbt.png" alt=""></span>
+      </a>
+    </div> <!-- .calendar-items -->
+
+    <script type="module">
+      import * as THREE from './scripts/three.module.js';
+      import Stats from './scripts/stats.module.js';
+      import { OBJLoader } from './scripts/OBJLoader.js';
+      import lightsConfig from './scripts/lights-config.js';
+
+      let camera, scene, renderer, object, stats;
+
+      const lights = {};
+
+      const clock = new THREE.Clock();
+
+      init();
+      animate();
+
+      function setColors() {
+        
+      }
+
+      function init() {
+        camera = new THREE.PerspectiveCamera(50, window.innerWidth / (window.innerHeight - lightsConfig.params.cardsHeight), 1, 1000);
+        camera.position.z = 100;
+
+        scene = new THREE.Scene();
+
+        // model
+        const loader = new OBJLoader();
+        loader.load('models/tower.obj', function (obj) {
+          object = obj;
+          object.scale.multiplyScalar(lightsConfig.params.towerScaleFactor);
+          object.position.x = lightsConfig.params.towerOffset.x;
+          object.position.y = lightsConfig.params.towerOffset.y;
+          object.position.z = lightsConfig.params.towerOffset.z;
+          scene.add(object);
+        });
+
+        const sphere = new THREE.SphereGeometry(0.5, 16, 8);
+
+        // lights
+        Object.entries(lightsConfig.parts).forEach(([k, { defaultColor, points }]) => {
+          lights[k] = [];
+          points.forEach(p => {
+            const light = new THREE.PointLight(defaultColor, 1, lightsConfig.params.defaultIntensity);
+
+            // TODO: uncomment to visualize light source
+            // light.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: defaultColor })));
+
+            lights[k].push(light);
+            scene.add(light);
+
+            light.position.x = p[0] * lightsConfig.params.towerScaleFactor + lightsConfig.params.towerOffset.x;
+            light.position.y = p[2] * lightsConfig.params.towerScaleFactor + lightsConfig.params.towerOffset.y;
+            light.position.z = p[1] * lightsConfig.params.towerScaleFactor + lightsConfig.params.towerOffset.z;
+          });
+        });
+
+        // renderer
+
+        renderer = new THREE.WebGLRenderer({
+          alpha: true,
+          antialias: true
+        });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight - lightsConfig.params.cardsHeight);
+        document.body.prepend(renderer.domElement);
+
+        // stats
+
+        // stats = new Stats();
+        // document.body.appendChild(stats.dom);
+
+        window.addEventListener('resize', onWindowResize);
+      }
+
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / (window.innerHeight - lightsConfig.params.cardsHeight);
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(window.innerWidth, window.innerHeight - lightsConfig.params.cardsHeight);
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        render();
+        // stats.update();
+      }
+
+      function render() {
+        const time = Date.now() * 0.0005;
+        const delta = clock.getDelta();
+
+        if (object) {
+          object.rotation.y -= lightsConfig.params.rotationSpeed * delta;
+        }
+
+        renderer.render(scene, camera);
+      }
+
+      document.querySelectorAll('.calendar-item').forEach(element => {
+        element.addEventListener('click', function() {
+          const scheme = this.getAttribute('data-color-scheme');
+          if (scheme && lightsConfig.colorSchemes[scheme]) {
+            Object.entries(lights).forEach(([k, lights]) => {
+              if (typeof lightsConfig.colorSchemes[scheme][k] === 'string') {
+                const c = new THREE.Color(lightsConfig.colorSchemes[scheme][k]);
+                lights.forEach(light => {
+                  light.color = c;
+                });
+              } else if (Array.isArray(lightsConfig.colorSchemes[scheme][k])) {
+                lightsConfig.colorSchemes[scheme][k].forEach((colorValue, i) => {
+                  const c = new THREE.Color(colorValue);
+                  lights[i].color = c;
+                });
+              }
+            });
+          }
+          return false;
+        });
+      });
+    </script>
+  </body>
+</html>
