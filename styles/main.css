@@ -470,9 +470,11 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
 }
 
 .detail-full-content {
+  font-family: Roboto, sans-serif;
   font-size: 13px;
   line-height: 1.2;
   margin-bottom: 17px;
+  white-space: pre-line;
 }
 
 .detail-full-top {
@@ -884,6 +886,10 @@ h3 {
     font-size: 18px;
     width: 100%;
     display: block;
+  }
+
+  .detail-full-content {
+    font-size: 17px;
   }
 }
 

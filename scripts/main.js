@@ -124,7 +124,11 @@ import Swiper from './swiper.min.js';
             <span data-language="en">${d.toLocaleDateString('en', {month: 'long', day: 'numeric'})}</span>
             <span data-language="ua">${d.toLocaleDateString('uk', {month: 'long', day: 'numeric'})}</span>
           </div>
-          <div class="detail-full-top-event-type">event_type</div>
+          <div class="detail-full-top-event-type">
+            <span data-language="cs">${data.type?.cs}</span>
+            <span data-language="en">${data.type?.en}</span>
+            <span data-language="ua">${data.type?.ua}</span>
+          </div>
           <div class="detail-full-top-time">${data.time}</div>
           <div class="detail-full-top-flag">
             <div class="detail-full-top-flag-in" style="background-image: url(${data.flagUrl})"></div>
@@ -136,11 +140,11 @@ import Swiper from './swiper.min.js';
           </div>
         </div>
       </div>
-      <div class="detail-full-content">
-        <span data-language="cs">${data.description?.cs}</span>
-        <span data-language="en">${data.description?.en}</span>
-        <span data-language="ua">${data.description?.ua}</span>
-      </div>
+      <div class="detail-full-content"
+        ><span data-language="cs">${data.description?.cs}</span
+        ><span data-language="en">${data.description?.en}</span
+        ><span data-language="ua">${data.description?.ua}</span
+      ></div>
       <a href="javascript:void(0);" class="btn-blue" onclick="Fancybox.close();">
         <span data-language="cs">Zpět</span>
         <span data-language="en">Back</span>
