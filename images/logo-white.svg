@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93 93" width="93" height="93">
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #ffffff } 
+	</style>
+	<g id="Logo">
+		<path id="Shape" class="shp0" d="M73,73.63c-59.87,1.25 -65.52,-40.82 -38.27,-73.63c-62.41,29.85 -35.28,98.64 38.27,73.63z" />
+		<path id="Shape" class="shp0" d="M38,9.83c32.66,-2.02 54.11,24.12 24.73,58.17c49.88,-26.95 21.45,-76.07 -24.73,-58.17z" />
+		<path id="Shape" class="shp0" d="M35,17.26c21.96,-2.11 35.82,16.75 25.87,41.74c22.12,-26 0.34,-51.91 -25.87,-41.74z" />
+	</g>
+</svg>
