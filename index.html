@@ -21,7 +21,7 @@
       <div class="main-nav-container">
         <div class="main-nav-items">
           <ul class="list-unstyled">
-            <li><a href="#">
+            <li><a href="#calendar-2022-05" data-fancybox="calendar">
               <span data-language="cs">Kalendář</span>
               <span data-language="en">Calendar</span>
               <span data-language="ua">Календар</span>
@@ -43,6 +43,11 @@
             </a></li>
           </ul>
         </div> <!-- .main-nav-items -->
+
+        <div style="display: none;">
+          <a href="#calendar-2022-06" data-fancybox="calendar"></a>
+        </div>
+
         <div class="social-links">
           <ul class="list-unstyled">
             <li><a
@@ -111,12 +116,16 @@
     </div> <!-- #calendar-items-wrap -->
 
     <div class="calendar-button">
-      <a href="#" class="btn-blue">
+      <a href="#calendar-2022-05" class="btn-blue" data-fancybox="calendar">
         <span data-language="cs">Prohlédnout si rozvrh</span>
         <span data-language="en">View the calendar</span>
         <span data-language="ua">Переглянути розклад</span>
       </a>
     </div> <!-- .calendar-button -->
+
+    <div style="display: none;">
+      <a href="#calendar-2022-06" data-fancybox="calendar"></a>
+    </div>
 
     <div class="preload-backgrounds"></div>
 
@@ -361,6 +370,328 @@
       </a>
     </div>  <!-- #team-->
     
+    <div id="calendar-2022-05" class="calendar-modal" style="display: none;">
+      <div class="calendar-header">
+        <div class="calendar-header-title">
+          <span data-language="cs">Květen 2022</span>
+          <span data-language="en">May 2022</span>
+          <span data-language="ua">Травень 2022</span>
+        </div>
+        <div class="calendar-header-nav">
+          <a href="#" class="calendar-header-nav-prev" data-fancybox-prev></a>
+          <a href="#" class="calendar-header-nav-next" data-fancybox-next></a>
+        </div>
+        <div class="calendar-header-icon"></div>
+      </div> <!-- .calendar-header -->
+      <table class="calendar">
+        <thead>
+          <tr>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">PO</span>
+                <span data-language="en">Mon</span>
+                <span data-language="ua">Пн</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Pondělí</span>
+                <span data-language="en">Monday</span>
+                <span data-language="ua">Понеділок</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">ÚT</span>
+                <span data-language="en">Tue</span>
+                <span data-language="ua">Вт</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Úterý</span>
+                <span data-language="en">Tuesday</span>
+                <span data-language="ua">Вівторок</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">ST</span>
+                <span data-language="en">Wed</span>
+                <span data-language="ua">Ср</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Středa</span>
+                <span data-language="en">Wednesday</span>
+                <span data-language="ua">Середа</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">ČT</span>
+                <span data-language="en">Thu</span>
+                <span data-language="ua">Чт</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Čtvrtek</span>
+                <span data-language="en">Thursday</span>
+                <span data-language="ua">Четвер</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">PÁ</span>
+                <span data-language="en">Fri</span>
+                <span data-language="ua">Пт</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Pátek</span>
+                <span data-language="en">Friday</span>
+                <span data-language="ua">П'ятниця</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">SO</span>
+                <span data-language="en">Sat</span>
+                <span data-language="ua">Сб</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Sobota</span>
+                <span data-language="en">Saturday</span>
+                <span data-language="ua">Субота</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">NE</span>
+                <span data-language="en">Sun</span>
+                <span data-language="ua">Нд</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Neděle</span>
+                <span data-language="en">Subday</span>
+                <span data-language="ua">Неділя</span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="na">25</td>
+            <td class="na">26</td>
+            <td class="na">27</td>
+            <td class="na">28</td>
+            <td class="na">29</td>
+            <td class="na">30</td>
+            <td data-date="2022-05-01">1</td>
+          </tr>
+          <tr>
+            <td data-date="2022-05-02">2</td>
+            <td data-date="2022-05-03">3</td>
+            <td data-date="2022-05-04">4</td>
+            <td data-date="2022-05-05">5</td>
+            <td data-date="2022-05-06">6</td>
+            <td data-date="2022-05-07">7</td>
+            <td data-date="2022-05-08">8</td>
+          </tr>
+          <tr>
+            <td data-date="2022-05-09">9</td>
+            <td data-date="2022-05-10">10</td>
+            <td data-date="2022-05-11">11</td>
+            <td data-date="2022-05-12">12</td>
+            <td data-date="2022-05-13">13</td>
+            <td data-date="2022-05-14">14</td>
+            <td data-date="2022-05-15">15</td>
+          </tr>
+          <tr>
+            <td data-date="2022-05-16">16</td>
+            <td data-date="2022-05-17">17</td>
+            <td data-date="2022-05-18">18</td>
+            <td data-date="2022-05-19">19</td>
+            <td data-date="2022-05-20">20</td>
+            <td data-date="2022-05-21">21</td>
+            <td data-date="2022-05-22">22</td>
+          </tr>
+          <tr>
+            <td data-date="2022-05-23">23</td>
+            <td data-date="2022-05-24">24</td>
+            <td data-date="2022-05-25">25</td>
+            <td data-date="2022-05-26">26</td>
+            <td data-date="2022-05-27">27</td>
+            <td data-date="2022-05-28">28</td>
+            <td data-date="2022-05-29">29</td>
+          </tr>
+          <tr>
+            <td data-date="2022-05-30">30</td>
+            <td data-date="2022-05-31">31</td>
+            <td class="na">1</td>
+            <td class="na">2</td>
+            <td class="na">3</td>
+            <td class="na">4</td>
+            <td class="na">5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> <!-- #calendar-2022-05 -->
+
+    <div id="calendar-2022-06" class="calendar-modal" style="display: none;">
+      <div class="calendar-header">
+        <div class="calendar-header-title">
+          <span data-language="cs">Červen 2022</span>
+          <span data-language="en">June 2022</span>
+          <span data-language="ua">Червень 2022</span>
+        </div>
+        <div class="calendar-header-nav">
+          <a href="#" class="calendar-header-nav-prev" data-fancybox-prev></a>
+          <a href="#" class="calendar-header-nav-next" data-fancybox-next></a>
+        </div>
+        <div class="calendar-header-icon"></div>
+      </div> <!-- .calendar-header -->
+      <table class="calendar">
+        <thead>
+          <tr>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">PO</span>
+                <span data-language="en">Mon</span>
+                <span data-language="ua">Пн</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Pondělí</span>
+                <span data-language="en">Monday</span>
+                <span data-language="ua">Понеділок</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">ÚT</span>
+                <span data-language="en">Tue</span>
+                <span data-language="ua">Вт</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Úterý</span>
+                <span data-language="en">Tuesday</span>
+                <span data-language="ua">Вівторок</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">ST</span>
+                <span data-language="en">Wed</span>
+                <span data-language="ua">Ср</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Středa</span>
+                <span data-language="en">Wednesday</span>
+                <span data-language="ua">Середа</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">ČT</span>
+                <span data-language="en">Thu</span>
+                <span data-language="ua">Чт</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Čtvrtek</span>
+                <span data-language="en">Thursday</span>
+                <span data-language="ua">Четвер</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">PÁ</span>
+                <span data-language="en">Fri</span>
+                <span data-language="ua">Пт</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Pátek</span>
+                <span data-language="en">Friday</span>
+                <span data-language="ua">П'ятниця</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">SO</span>
+                <span data-language="en">Sat</span>
+                <span data-language="ua">Сб</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Sobota</span>
+                <span data-language="en">Saturday</span>
+                <span data-language="ua">Субота</span>
+              </div>
+            </th>
+            <th>
+              <div class="week-day-short">
+                <span data-language="cs">NE</span>
+                <span data-language="en">Sun</span>
+                <span data-language="ua">Нд</span>
+              </div>
+              <div class="week-day-long">
+                <span data-language="cs">Neděle</span>
+                <span data-language="en">Subday</span>
+                <span data-language="ua">Неділя</span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="na">30</td>
+            <td class="na">31</td>
+            <td data-date="2022-06-01">1</td>
+            <td data-date="2022-06-02">2</td>
+            <td data-date="2022-06-03">3</td>
+            <td data-date="2022-06-04">4</td>
+            <td data-date="2022-06-05">5</td>
+          </tr>
+          <tr>
+            <td data-date="2022-06-06">6</td>
+            <td data-date="2022-06-07">7</td>
+            <td data-date="2022-06-08">8</td>
+            <td data-date="2022-06-09">9</td>
+            <td data-date="2022-06-10">10</td>
+            <td data-date="2022-06-11">11</td>
+            <td data-date="2022-06-12">12</td>
+          </tr>
+          <tr>
+            <td data-date="2022-06-13">13</td>
+            <td data-date="2022-06-14">14</td>
+            <td data-date="2022-06-15">15</td>
+            <td data-date="2022-06-16">16</td>
+            <td data-date="2022-06-17">17</td>
+            <td data-date="2022-06-18">18</td>
+            <td data-date="2022-06-19">19</td>
+          </tr>
+          <tr>
+            <td data-date="2022-06-20">20</td>
+            <td data-date="2022-06-21">21</td>
+            <td data-date="2022-06-22">22</td>
+            <td data-date="2022-06-23">23</td>
+            <td data-date="2022-06-24">24</td>
+            <td data-date="2022-06-25">25</td>
+            <td data-date="2022-06-26">26</td>
+          </tr>
+          <tr>
+            <td data-date="2022-06-27">27</td>
+            <td data-date="2022-06-28">28</td>
+            <td data-date="2022-06-29">29</td>
+            <td data-date="2022-06-30">30</td>
+            <td class="na">1</td>
+            <td class="na">2</td>
+            <td class="na">3</td>
+          </tr>
+          <tr>
+            <td class="na">4</td>
+            <td class="na">5</td>
+            <td class="na">6</td>
+            <td class="na">7</td>
+            <td class="na">8</td>
+            <td class="na">9</td>
+            <td class="na">10</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> <!-- #calendar-2022-06 -->
+
 
     <script src="./scripts/fancybox.umd.js"></script>
     <script type="module" src="./scripts/main.js"></script>

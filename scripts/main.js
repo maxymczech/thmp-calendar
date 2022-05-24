@@ -8,6 +8,17 @@ import lightsConfig from './lights-config.js';
 import Swiper from './swiper.min.js';
 
 (async () => {
+  function formatDate(d) {
+    if (!d) {
+      return '';
+    }
+    return (
+      d.getFullYear() + '-' +
+      ('00' + (d.getMonth() + 1)).slice(-2) + '-' +
+      ('00' + d.getDate()).slice(-2)
+    );
+  }
+
   // Season functions
   function setSeason(d) {
     const m = d.getMonth();
@@ -63,18 +74,32 @@ import Swiper from './swiper.min.js';
       `;
       slide.addEventListener('click', () => selectEvent(doc));
       document.querySelector('#calendar-items-wrap .swiper-wrapper').append(slide);
+
+      // Populate calendar
+      document.addEventListener('click', function(event) {
+        if (event.target.getAttribute('data-date') === formatDate(d)) {
+          Fancybox.close();
+          selectEvent(doc);
+        }
+      });
+
+      document.querySelectorAll(`[data-date="${formatDate(d)}"]`).forEach(cell => {
+        cell.classList.add('active');
+        cell.innerHTML =
+          `<div class="calendar-cell-flag" style="background-image: url(${data.flagUrl})"></div>` +
+          cell.innerHTML +
+          `<div class="calendar-cell-name">
+            <span data-language="cs">${data.name?.cs}</span>
+            <span data-language="en">${data.name?.en}</span>
+            <span data-language="ua">${data.name?.ua}</span>
+          </div>`;
+      });
     });
     if (events.length) {
       selectEvent(events[0]);
     }
 
     const swiper = new Swiper(document.querySelector('#calendar-items-wrap .swiper'), {
-      breakpoints: {
-        0: {
-        },
-        992: {
-        }
-      },
       loop: false,
       navigation: {
         nextEl: '#calendar-items-wrap .swiper-button-next',
@@ -82,6 +107,15 @@ import Swiper from './swiper.min.js';
       },
       slidesPerView: 3,
       spaceBetween: 15
+    });
+
+    const swiperCalendar = new Swiper(document.querySelector('#calendar .swiper'), {
+      loop: false,
+      navigation: {
+        nextEl: '#calendar .swiper-button-next',
+        prevEl: '#calendar .swiper-button-prev'
+      },
+      slidesPerView: 1
     });
   })();
 
