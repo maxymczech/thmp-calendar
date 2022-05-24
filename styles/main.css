@@ -37,8 +37,18 @@ body.winter { background-image: url(../images/backgrounds/bgr-winter-small.png);
   background-size: cover;
 }
 
-.fancybox__content>.carousel__button {
-  display: none !important;
+.fancybox__content>.carousel__button.is-close {
+  color: #7B827E;
+  top: 5px;
+  right: 5px;
+  box-shadow: unset;
+}
+.fancybox__content>.carousel__button.is-close:hover {
+  opacity: 0.8;
+}
+
+.fancybox__content {
+  border-radius: 5px;
 }
 
 body.spring .fancybox__backdrop { background-image: url(../images/backgrounds/sky-spring-small.png); }
@@ -110,7 +120,7 @@ canvas {
   background-color: #888;
   border-radius: 2px;
   display: block;
-  height: 4px;
+  height: 2px;
   left: 10px;
   margin: 0 auto;
   position: absolute;
@@ -202,7 +212,7 @@ canvas {
 }
 
 .language-dropdown li + li {
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 [data-language="cs"],
@@ -241,7 +251,7 @@ canvas {
 }
 
 .main-nav-items li {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .main-nav-items a {
@@ -282,7 +292,7 @@ canvas {
   left: 0;
   opacity: 1;
   top: 0;
-  transition: all .3s;
+  transition: all .9s;
 }
 
 .social-links a::after {
@@ -323,7 +333,7 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
 
 .calendar-button {
   margin: 15px auto;
-  max-width: 330px;
+  max-width: 300px;
 }
 
 .btn-blue {
@@ -331,7 +341,7 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
   border: 1px solid #00A3C0;
   border-radius: 5px;
   display: block;
-  font-size: 18px;
+  font-size: 15px;
   color: #fff;
   line-height: 23px;
   padding: 5px 10px;
@@ -340,19 +350,28 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  transition: all .3s;
+  transition: all 0.4s;
   font-family: Roboto, sans-serif;
+}
+.calendar-button .btn-blue {
+  background-image: url(../images/icons/calendar-white.svg);
+  background-repeat: no-repeat;
+  background-position: calc(50% - 125px) 45%;
+  background-size: 19px auto;
 }
 
 .btn-blue:hover {
   background-color: #fff;
   color: #00A3C0;
 }
+.calendar-button .btn-blue:hover {
+  background-image: url(../images/icons/calendar-blue.svg);
+}
 
 #calendar-items-wrap {
   margin: 0 auto 15px;
   position: relative;
-  width: 330px;
+  width: 300px;
 }
 
 .swiper-button-prev,
@@ -415,7 +434,7 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
   top: 65px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
   display: none;
-  width: 100px;
+  width: 120px;
   color: #000;
 }
 
@@ -432,7 +451,7 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
   font-size: 10px;
   font-weight: bold;
   line-height: 1.2;
-  margin-bottom: 7px;
+  margin-bottom: 12px;
   font-family: Roboto, sans-serif;
   text-align: center;
 }
@@ -478,18 +497,29 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
 }
 
 .detail-full-top-time {
-  background-image: url(../images/icons/clock.png);
+  background-image: url(../images/icons/clock.svg);
   background-repeat: no-repeat;
   background-position: 0 50%;
   padding-left: 30px;
-  font-size: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.detail-full-top-event-type {
+  background-image: url(../images/icons/calendar-black.svg);
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  padding-left: 30px;
+  font-size: 12px;
   line-height: 1.6;
   margin-bottom: 10px;
   font-weight: 500;
 }
 
 .detail-full-top-flag {
-  background-image: url(../images/icons/light.png);
+  background-image: url(../images/icons/light.svg);
   background-repeat: no-repeat;
   background-position: 0 50%;
   padding-left: 30px;
@@ -502,6 +532,8 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
   background-size: cover;
   width: 32px;
   height: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
 }
 
 .detail-full-top-name {
@@ -533,17 +565,77 @@ h1 {
 h2 {
   margin: 0 0 20px;
 }
+h3 {
+  font-family: 'Oswald', sans-serif;
+}
+
+.fancybox__container  a {
+  color: #000;
+  text-decoration: none;
+}
+
+.fancybox__container a:hover {
+  color: #00a3c0;
+  text-decoration: none;
+}
+.fancybox__container  a.btn-blue  {
+  color: white
+}
+
+.fancybox__container  a.btn-blue:hover {
+  color: #00a3c0;
+}
+
+#contact .social-links {
+  padding-left: 0;
+  padding-bottom: 25px;
+}
+.img-person {
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  margin: 0 auto 20px;
+  background-size: contain;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+}
+.max-pic {
+  background-image: url(../images/max.png);
+}
+
+.olena-pic {
+  background-image: url(../images/lena.png);
+}
+
+.desc {
+  margin-bottom: 20px;
+}
+
+.person-info {
+  padding-bottom: 20px;
+}
 
 /* * XXSmall devices (landscape phones, 390px and up) * */
 @media (min-width: 380px) {
   body {
     background-position: 50% 0%;
   }
+  #calendar-items-wrap {
+    width: 330px;
+  }
+  .calendar-button {
+    max-width: 330px;
+  }
 }
 
 /* * XSmall devices (landscape phones, 414px and up) * */
 @media (min-width: 414px) {
-
+  #calendar-items-wrap {
+    width: 380px;
+  }
+  .calendar-button {
+    max-width: 380px;
+  }
 }
 
 /* * Small devices (landscape phones, 540px and up) * */
@@ -720,13 +812,22 @@ h2 {
   }
 
   .calendar-button {
-    display: none;
+    max-width: 585px;
+  }
+  
+  .calendar-button .btn-blue {
+    border-radius: 10px;
+    background-size: 25px auto;
+    background-position: calc(50% - 155px) 45%;
+    padding: 15px;
+    font-size: 18px;
   }
 
   #card-detail {
     padding: 12px;
     top: 75px;
     width: 255px;
+    border-radius: 10px;
   }
 
   .detail-card-image {
@@ -741,7 +842,48 @@ h2 {
   }
 
   #card-detail .btn-blue {
+    font-size: 15px;
+  }
+
+  #contact .social-links {
+    display: block;
+  }
+  #detail-full {
+    max-width: 900px;
+    padding: 30px;
+    border-radius: 10px;
+  }
+  .detail-full-top-date {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  .detail-full-top-flag,
+  .detail-full-top-event-type,
+  .detail-full-top-time {
     font-size: 18px;
+    margin-bottom: 20px;
+    padding-left: 50px;
+  }
+  .detail-full-top-flag-in {
+    height: 28px;
+    width: 50px;
+  }
+  .detail-full-top-name {
+    font-size: 20px;
+  }
+  .detail-full-top-image {
+    height: 240px;
+    margin-right: 35px;
+  }
+  .fancybox__content>.carousel__button.is-close {
+    top: 15px;
+    right: 15px;
+  }
+  .fancybox__content .btn-blue {
+    padding: 10px;
+    font-size: 18px;
+    width: 100%;
+    display: block;
   }
 }
 
