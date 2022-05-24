@@ -9,12 +9,13 @@
     <link rel="icon" href="favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet"> 
 
-    <link type="text/css" rel="stylesheet" href="./styles/main.css">
     <link type="text/css" rel="stylesheet" href="./styles/swiper-bundle.min.css">
+    <link type="text/css" rel="stylesheet" href="./styles/fancybox.css">
+    <link type="text/css" rel="stylesheet" href="./styles/main.css">
   </head>
-  <body class="spring">
+  <body>
     <div class="main-nav">
       <a href="./" class="logo"></a>
       <div class="main-nav-container">
@@ -25,12 +26,12 @@
               <span data-language="en">Calendar</span>
               <span data-language="ua">Календар</span>
             </a></li>
-            <li><a href="#">
+            <li><a href="#about" data-fancybox>
               <span data-language="cs">O projektu</span>
               <span data-language="en">About</span>
               <span data-language="ua">Про проект</span>
             </a></li>
-            <li><a href="#">
+            <li><a href="#contact" data-fancybox>
               <span data-language="cs">Kontakty</span>
               <span data-language="en">Contact</span>
               <span data-language="ua">Контакти</span>
@@ -93,19 +94,89 @@
 
     <div id="tower-container"></div>
 
+    <div id="card-detail"></div>
+
     <div id="calendar-items-wrap">
-      <div class="calendar-items">
-      </div> <!-- .calendar-items -->
+      <div class="swiper">
+        <div class="swiper-wrapper">
+        </div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div> <!-- #calendar-items-wrap -->
 
     <div class="calendar-button">
-      <a href="#">
+      <a href="#" class="btn-blue">
         <span data-language="cs">Prohlédnout si rozvrh</span>
         <span data-language="en">View the calendar</span>
         <span data-language="ua">Переглянути розклад</span>
       </a>
     </div> <!-- .calendar-button -->
 
+    <div class="preload-backgrounds"></div>
+
+    <div id="detail-full" style="display: none;">
+    </div>
+
+    <div id="about" style="display: none;">
+      <div data-language="cs">
+        <h2>Slavnostní osvětlení Petřínské rozhledny</h2>
+        <div class="text-content">
+          <p>Mezi památky a významné objekty, jejichž slavnostní osvětlení má THMP od roku 2018 ve své správě, patří i Petřínská rozhledna, která je jednou z nejznámějších dominant české metropole již od roku 1891. Přesto si musela na své slavnostní osvětlení počkat až do roku 1998.</p>
+          <p>V roce 1998 studii a projekt architekturního osvětlení Petřínské rozhledny zadal tehdejší správce pražského veřejného osvětlení. V té době bylo slavnostní nasvícení řešeno kombinací sodíkových a halogenidových výbojek s teplým žlutým odstínem (s teplotou chromatičnosti 2 800 K), jehož podíl se směrem ke špičce věže zmenšoval, přičemž její vrcholek osvětlovaly světlomety s bílým světlem (6 200 K). Dohromady dominantu Petřína osvětlovalo 32 svítidel.</p>
+          <p>Současné řešení světelné soustavy slavnostního osvětlení Petřínské rozhledny pochází z roku 2015 a   ta je osazena celkem 40 kusy barevných LED svítidel. V celé výši věže je soustava rozdělena do čtyř segmentů – ten 1. obsahuje 8 svítidel, 2. 16 ks, 3. segment  a špička rozhledny májí též po 8 kusech LED svítidel.</p>
+          <p>Díky této technologii a čtyřbarevnému provedení svítidel RGBW (červená, zelená, modrá a bílá), a také díky rozdělení do segmentů, lze proto nasvícení rozhledny variovat, jelikož jsou svítidla schopna produkovat jakoukoli barvu. Po nahrání programu ovládání jednotlivých svítidel do řídící jednotky osvětlení lze nastavit i proměnlivost (přechod jednotlivých barev, nárůst intenzity, rotace apod.)</p>
+        </div>
+      </div>
+      <div data-language="en">
+        <h2>Festive lighting of the Petrin lookout tower</h2>
+        <div class="text-content">
+          <p>The Petřín Lookout Tower, which has been one of the most famous landmarks of the Czech capital since 1891, is one of the monuments and important buildings whose ceremonial lighting the THMP has managed since 2018. Nevertheless, it had to wait until 1998 for its ceremonial lighting.</p>
+          <p>In 1998, the study and project of architectural lighting of the Petřín Lookout Tower was commissioned by the then administrator of Prague's public lighting. At that time, the festive lighting was solved by a combination of sodium and halide lamps with a warm yellow shade (chromaticity temperature 2,800 K), the proportion of which decreased towards the top of the tower, while its top was illuminated by headlights with white light (6,200 K). Together, the Petřín landmark was illuminated by 32 luminaires.</p>
+          <p>The current solution of the lighting system of the festive lighting of the Petřín Lookout Tower dates from 2015 and it is equipped with a total of 40 pieces of colored LED lamps. In the entire height of the tower, the system is divided into four segments - the first one contains 8 lamps, 2. 16 pieces, the 3rd segment and the top of the lookout tower also has 8 pieces of LED lamps.</p>
+          <p>Thanks to this technology and the four-color design of the RGBW luminaires (red, green, blue and white), as well as the segmentation, the lighting of the lookout tower can therefore be varied, as the luminaires are able to produce any color. After uploading the control program of individual luminaires to the lighting control unit, variability can also be set (transition of individual colors, increase in intensity, rotation, etc.)</p>
+        </div>
+      </div>
+      <div data-language="ua">
+        <h2>Святкове освітлення Петринської оглядової вежі</h2>
+        <div class="text-content">
+          <p>Петршинська оглядова вежа, яка є однією з найвідоміших пам’яток чеської столиці з 1891 року, є одним із пам’ятників і важливих будівель, церемоніальним освітленням яких THMP керує з 2018 року. Тим не менш, на його церемонію довелося чекати до 1998 року. освітлення.</p>
+          <p>У 1998 році дослідження та проект архітектурного освітлення Петршинської оглядової вежі замовив тодішній розпорядник громадського освітлення Прази. У той час святкове освітлення вирішувалося поєднанням натрієвих і галогенних ламп теплого жовтого відтінку (температура кольоровості 2800 К), частка якого зменшувалася до вершини вежі, а її верх освітлювався фарами з білим світлом. світло (6200 К). Разом пам’ятку Петршин освітлювали 32 світильники.</p>
+          <p>Сучасне рішення системи освітлення святкового освітлення Петршинської оглядової вежі датується 2015 роком і оснащено загалом 40 кольоровими світлодіодними лампами. По всій висоті вежі система розділена на чотири сегменти - перший містить 8 ламп, 2. 16 штук, 3-й сегмент і верх оглядової вежі також має 8 світлодіодних ламп.</p>
+          <p>Завдяки цій технології та чотириколірному дизайну світильників RGBW (червоний, зелений, синій і білий), а також поділу на сегменти освітлення оглядової вежі може бути різноманітним, оскільки світильники здатні виробляти будь-якого кольору. Після завантаження програми управління окремими світильниками в блок управління освітленням також можна налаштувати варіативність (перехід окремих кольорів, збільшення інтенсивності, поворот тощо).</p>
+        </div>
+      </div>
+      <a href="javascript:void(0);" class="btn-blue max-width-360" onclick="Fancybox.close()">
+        <span data-language="cs">Zpět</span>
+        <span data-language="en">Back</span>
+        <span data-language="ua">Назад</span>
+      </a>
+    </div> <!-- #about -->
+
+    <div id="contact" style="display: none;">
+      <div data-language="cs">
+        <h2>Kontakty</h2>
+        <div class="text-content">
+        </div>
+      </div>
+      <div data-language="en">
+        <h2>Contacts</h2>
+        <div class="text-content">
+        </div>
+      </div>
+      <div data-language="ua">
+        <h2>Контакти</h2>
+        <div class="text-content">
+        </div>
+      </div>
+      <a href="javascript:void(0);" class="btn-blue max-width-360" onclick="Fancybox.close()">
+        <span data-language="cs">Zpět</span>
+        <span data-language="en">Back</span>
+        <span data-language="ua">Назад</span>
+      </a>
+    </div> <!-- #contact -->
+
+    <script src="./scripts/fancybox.umd.js"></script>
     <script type="module" src="./scripts/main.js"></script>
   </body>
 </html>

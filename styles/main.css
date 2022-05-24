@@ -20,48 +20,42 @@ body {
   padding: 0;
 }
 
+body::after {
+  content: '';
+  height: 1px;
+  display: block;
+}
+
 body.spring { background-image: url(../images/backgrounds/bgr-spring-small.png); }
 body.summer { background-image: url(../images/backgrounds/bgr-summer-small.png); }
 body.autumn { background-image: url(../images/backgrounds/bgr-autumn-small.png); }
 body.winter { background-image: url(../images/backgrounds/bgr-winter-small.png); }
 
-.calendar-items {
-  align-items: stretch;
-  display: flex;
-  justify-content: center;
-  padding: 10px;
+.fancybox__backdrop {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
 }
 
-.calendar-item {
-  background-color: #fff;
-  border-radius: 15px;
-  color: #333;
-  display: flex;
-  flex-direction: column;
-  height: 190px;
-  margin: 5px;
-  padding: 10px;
-  text-decoration: none;
-  width: 140px;
+.fancybox__content>.carousel__button {
+  display: none !important;
 }
 
-.calendar-item-img {
-  margin-top: auto;
-}
+body.spring .fancybox__backdrop { background-image: url(../images/backgrounds/sky-spring-small.png); }
+body.summer .fancybox__backdrop { background-image: url(../images/backgrounds/sky-summer-small.png); }
+body.autumn .fancybox__backdrop { background-image: url(../images/backgrounds/sky-autumn-small.png); }
+body.winter .fancybox__backdrop { background-image: url(../images/backgrounds/sky-winter-small.png); }
 
-.calendar-item-img img {
-  width: 100%;
-  display: block;
-}
-
-.calendar-item-date {
-  font-size: 12px;
-  font-style: italic;
-  opacity: 0.5;
-}
-
-.calendar-item-title {
-  margin-bottom: 5px;
+.preload-backgrounds {
+  background-image:
+    url(../images/backgrounds/bgr-spring-small.png),
+    url(../images/backgrounds/bgr-summer-small.png),
+    url(../images/backgrounds/bgr-autumn-small.png),
+    url(../images/backgrounds/bgr-winter-small.png),
+    url(../images/backgrounds/bgr-spring-big.png),
+    url(../images/backgrounds/bgr-summer-big.png),
+    url(../images/backgrounds/bgr-autumn-big.png),
+    url(../images/backgrounds/bgr-winter-big.png);
 }
 
 canvas {
@@ -328,12 +322,11 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
 }
 
 .calendar-button {
-  margin: 15px auto 0;
-  max-width: 360px;
-  padding-bottom: 15px;
+  margin: 15px auto;
+  max-width: 330px;
 }
 
-.calendar-button a {
+.btn-blue {
   background-color: #00A3C0;
   border: 1px solid #00A3C0;
   border-radius: 5px;
@@ -348,11 +341,197 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
   text-transform: uppercase;
   letter-spacing: 0.02em;
   transition: all .3s;
+  font-family: Roboto, sans-serif;
 }
 
-.calendar-button a:hover {
+.btn-blue:hover {
   background-color: #fff;
   color: #00A3C0;
+}
+
+#calendar-items-wrap {
+  margin: 0 auto 15px;
+  position: relative;
+  width: 330px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  display: none !important;
+}
+
+.slider-item {
+  background-color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  color: #000;
+  cursor: pointer;
+  height: 140px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all .3s;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.slider-item-flag {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  border-radius: 5px;
+  height: 55px;
+  margin-bottom: 7px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.slider-item-date {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.slider-item-name {
+  align-items: center;
+  display: flex;
+  font-family: Roboto, sans-serif;
+  height: 42px;
+  font-size: 11px;
+  line-height: 14px;
+  overflow: hidden;
+}
+
+.slider-item-name > * {
+  max-height: 42px;
+  width: 100%;
+}
+
+#card-detail {
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 5px;
+  position: fixed;
+  left: 15px;
+  top: 65px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+  display: none;
+  width: 100px;
+  color: #000;
+}
+
+.detail-card-image {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  height: 90px;
+}
+
+.detail-card-title {
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 7px;
+  font-family: Roboto, sans-serif;
+  text-align: center;
+}
+
+#card-detail .btn-blue {
+  font-size: 10px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+#detail-full {
+  color: #000;
+  max-width: 360px;
+  padding: 15px;
+  width: 100%;
+}
+
+.detail-full-content {
+  font-size: 13px;
+  line-height: 1.2;
+  margin-bottom: 17px;
+}
+
+.detail-full-top {
+  display: flex;
+  margin-bottom: 23px;
+}
+
+.detail-full-top-image {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  margin-right: 15px;
+  max-width: 50%;
+  min-width: 50%;
+  height: 150px;
+}
+
+.detail-full-top-date {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.detail-full-top-time {
+  background-image: url(../images/icons/clock.png);
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  padding-left: 30px;
+  font-size: 10px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.detail-full-top-flag {
+  background-image: url(../images/icons/light.png);
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  padding-left: 30px;
+  margin-bottom: 10px;
+}
+
+.detail-full-top-flag-in {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32px;
+  height: 18px;
+}
+
+.detail-full-top-name {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.max-width-360 {
+  max-width: 360px;
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-content {
+  font-family: Roboto, sans-serif;
+  line-height: 1.4;
+}
+
+h1 {
+}
+
+h2 {
+  margin: 0 0 20px;
 }
 
 /* * XXSmall devices (landscape phones, 390px and up) * */
@@ -384,10 +563,19 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
 /* * Large devices (desktops, 992px and up) * */
 @media (min-width: 992px) {
   body {
-    background-image: url(../images/bgr-summer-big.png);
     background-position: 50% 45%;
     background-size: cover;
   }
+
+  body.spring { background-image: url(../images/backgrounds/bgr-spring-big.png); }
+  body.summer { background-image: url(../images/backgrounds/bgr-summer-big.png); }
+  body.autumn { background-image: url(../images/backgrounds/bgr-autumn-big.png); }
+  body.winter { background-image: url(../images/backgrounds/bgr-winter-big.png); }
+
+  body.spring .fancybox__backdrop { background-image: url(../images/backgrounds/sky-spring-big.png); }
+  body.summer .fancybox__backdrop { background-image: url(../images/backgrounds/sky-summer-big.png); }
+  body.autumn .fancybox__backdrop { background-image: url(../images/backgrounds/sky-autumn-big.png); }
+  body.winter .fancybox__backdrop { background-image: url(../images/backgrounds/sky-winter-big.png); }
 
   .main-nav {
     height: 60px;
@@ -442,6 +630,118 @@ a.social-youtube::before { background-image: url(../images/icons/youtube-active.
 
   .main-nav-items a {
     padding: 0;
+  }
+
+  #calendar-items-wrap {
+    margin: 0 auto 20px;
+    width: 600px;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: flex !important;
+    background-color: #fff;
+    border-radius: 50%;
+    color: #000;
+    width: 50px;
+    height: 50px;
+    transition: background .3s;
+  }
+
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    color: #fff;
+  }
+
+  body.spring .swiper-button-prev:hover,
+  body.spring .swiper-button-next:hover {
+    background-color: #EB507F;
+  }
+  body.summer .swiper-button-prev:hover,
+  body.summer .swiper-button-next:hover {
+    background-color: #76C867;
+  }
+  body.autumn .swiper-button-prev:hover,
+  body.autumn .swiper-button-next:hover {
+    background-color: #FBA05E;
+  }
+  body.winter .swiper-button-prev:hover,
+  body.winter .swiper-button-next:hover {
+    background-color: #01AECC;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 22px;
+  }
+
+  .swiper-button-prev {
+    left: -100px;
+  }
+
+  .swiper-button-next {
+    right: -100px;
+  }
+
+  .slider-item-wrap {
+    padding: 10px;
+  }
+
+  .slider-item:hover {
+    box-shadow: 0px 0px 10px 4px rgba(12, 12, 12, 0.4);
+  }
+
+  .slider-item {
+    padding: 10px;
+    border-radius: 10px;
+    height: 250px;
+  }
+
+  .slider-item-flag {
+    border-radius: 8px;
+    height: 100px;
+    margin-bottom: 15px;
+  }
+
+  .slider-item-date {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 12px;
+  }
+
+  .slider-item-name {
+    font-size: 18px;
+    height: 66px;
+    line-height: 22px;
+  }
+
+  .slider-item-name > * {
+    max-height: 66px;
+  }
+
+  .calendar-button {
+    display: none;
+  }
+
+  #card-detail {
+    padding: 12px;
+    top: 75px;
+    width: 255px;
+  }
+
+  .detail-card-image {
+    margin-bottom: 18px;
+    height: 166px;
+  }
+
+  .detail-card-title {
+    font-size: 18px;
+    line-height: 1.2;
+    margin-bottom: 13px;
+  }
+
+  #card-detail .btn-blue {
+    font-size: 18px;
   }
 }
 

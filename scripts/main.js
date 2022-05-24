@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js'
-import { collection, getDocs, getFirestore } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js'
+import { collection, getDocs, getFirestore, orderBy, query } from 'https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js'
 
 import * as THREE from './three.module.js';
 import { OBJLoader } from './OBJLoader.js';
@@ -8,6 +8,15 @@ import lightsConfig from './lights-config.js';
 import Swiper from './swiper.min.js';
 
 (async () => {
+  // Season functions
+  function setSeason(d) {
+    const m = d.getMonth();
+    const seasons = ['winter', 'winter', 'spring', 'spring', 'spring', 'summer', 'summer', 'summer', 'autumn', 'autumn', 'autumn', 'winter'];
+    document.body.classList.remove('spring', 'summer', 'autumn', 'winter');
+    document.body.classList.add(seasons[m]);
+  }
+  setSeason(new Date());
+
   // Initialize Firebase app
   const firebaseConfig = {
     apiKey: "AIzaSyBzswh9S2lilZ-VfGHL1cjFiIQoyqhIcgk",
@@ -23,11 +32,121 @@ import Swiper from './swiper.min.js';
   const events = [];
   (async () => {
     const db = getFirestore();
-    const querySnapshot = await getDocs(collection(db, "events"));
+    const querySnapshot = await getDocs(query(
+      collection(db, "events"),
+      orderBy('date', 'asc')
+    ));
     querySnapshot.forEach(doc => {
       events.push(doc);
+      const data = doc.data();
+      const slide = document.createElement('div');
+      slide.classList.add('swiper-slide');
+      const d = data.date?.toDate?.();
+      slide.innerHTML = `
+        <div class="slider-item-wrap">
+          <div class="slider-item">
+            <div class="slider-item-flag" style="background-image: url(${data.flagUrl})"></div>
+            <div class="slider-item-date">
+              <span data-language="cs">${d.toLocaleDateString('cs', {month: 'long', day: 'numeric'})}</span>
+              <span data-language="en">${d.toLocaleDateString('en', {month: 'long', day: 'numeric'})}</span>
+              <span data-language="ua">${d.toLocaleDateString('uk', {month: 'long', day: 'numeric'})}</span>
+            </div>
+            <div class="slider-item-name">
+              <span>
+                <span data-language="cs">${data.name?.cs}</span>
+                <span data-language="en">${data.name?.en}</span>
+                <span data-language="ua">${data.name?.ua}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      `;
+      slide.addEventListener('click', () => selectEvent(doc));
+      document.querySelector('#calendar-items-wrap .swiper-wrapper').append(slide);
     });
-  })()
+    if (events.length) {
+      selectEvent(events[0]);
+    }
+
+    const swiper = new Swiper(document.querySelector('#calendar-items-wrap .swiper'), {
+      breakpoints: {
+        0: {
+        },
+        992: {
+        }
+      },
+      loop: false,
+      navigation: {
+        nextEl: '#calendar-items-wrap .swiper-button-next',
+        prevEl: '#calendar-items-wrap .swiper-button-prev'
+      },
+      slidesPerView: 3,
+      spaceBetween: 15
+    });
+  })();
+
+  function selectEvent(doc) {
+    const data = doc.data();
+    setSeason(data.date.toDate());
+
+    const c1 = new THREE.Color(data.fixtures[1]);
+    const c2 = new THREE.Color(data.fixtures[2]);
+    const c3 = new THREE.Color(data.fixtures[3]);
+    lights.base.forEach(light => { light.color = c1; });
+    lights.shaft.forEach(light => { light.color = c2; });
+    lights.top.forEach(light => { light.color = c3; });
+
+    const detailCard = document.querySelector('#card-detail');
+    if (detailCard) {
+      detailCard.innerHTML = `
+        <div class="detail-card-image" style="background-image: url(${data.pictureUrl})"></div>
+        <div class="detail-card-title">
+          <span data-language="cs">${data.name?.cs}</span>
+          <span data-language="en">${data.name?.en}</span>
+          <span data-language="ua">${data.name?.ua}</span>
+        </div>
+        <a href="#detail-full" data-fancybox class="btn-blue">
+          <span data-language="cs">Dozvědět víc</span>
+          <span data-language="en">Learn more</span>
+          <span data-language="ua">Читати далі</span>
+        </a>
+      `;
+      detailCard.style.display = 'block';
+    }
+
+    const d = data.date?.toDate?.();
+    document.querySelector('#detail-full').innerHTML = `
+      <div class="detail-full-top">
+        <div class="detail-full-top-image" style="background-image: url(${data.pictureUrl})"></div>
+        <div class="detail-full-top-rest">
+          <div class="detail-full-top-date">
+            <span data-language="cs">${d.toLocaleDateString('cs', {month: 'long', day: 'numeric'})}</span>
+            <span data-language="en">${d.toLocaleDateString('en', {month: 'long', day: 'numeric'})}</span>
+            <span data-language="ua">${d.toLocaleDateString('uk', {month: 'long', day: 'numeric'})}</span>
+          </div>
+          <div class="detail-full-top-time">${data.time}</div>
+          <div class="detail-full-top-flag">
+            <div class="detail-full-top-flag-in" style="background-image: url(${data.flagUrl})"></div>
+          </div>
+          <div class="detail-full-top-name">
+            <span data-language="cs">${data.name?.cs}</span>
+            <span data-language="en">${data.name?.en}</span>
+            <span data-language="ua">${data.name?.ua}</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-full-content">
+        <span data-language="cs">${data.description?.cs}</span>
+        <span data-language="en">${data.description?.en}</span>
+        <span data-language="ua">${data.description?.ua}</span>
+      </div>
+      <a href="javascript:void(0);" class="btn-blue" onclick="Fancybox.close();">
+        <span data-language="cs">Zpět</span>
+        <span data-language="en">Back</span>
+        <span data-language="ua">Назад</span>
+      </a>
+    `;
+  }
 
   // Set up 3D scene
   let camera, scene, renderer, object;
@@ -37,8 +156,16 @@ import Swiper from './swiper.min.js';
   initTowerScene();
   animateTowerScene();
 
+  function getRendererWidth() {
+    return window.innerWidth;
+  }
+
+  function getRendererHeight() {
+    return window.innerWidth >= 992 ? 800 : (window.innerHeight - lightsConfig.params.cardsHeight);
+  }
+
   function initTowerScene() {
-    camera = new THREE.PerspectiveCamera(50, window.innerWidth / (window.innerHeight - lightsConfig.params.cardsHeight), 1, 1000);
+    camera = new THREE.PerspectiveCamera(50, getRendererWidth() / getRendererHeight(), 1, 1000);
     camera.position.z = 100;
 
     scene = new THREE.Scene();
@@ -80,16 +207,16 @@ import Swiper from './swiper.min.js';
       antialias: true
     });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight - lightsConfig.params.cardsHeight);
+    renderer.setSize(getRendererWidth(), getRendererHeight());
     document.getElementById('tower-container').append(renderer.domElement);
 
     window.addEventListener('resize', onWindowResize);
   }
 
   function onWindowResize() {
-    camera.aspect = window.innerWidth / (window.innerHeight - lightsConfig.params.cardsHeight);
+    camera.aspect = getRendererWidth() / getRendererHeight();
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight - lightsConfig.params.cardsHeight);
+    renderer.setSize(getRendererWidth(), getRendererHeight());
   }
 
   function animateTowerScene() {
