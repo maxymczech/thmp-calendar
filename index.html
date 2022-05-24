@@ -1,13 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
   <head>
     <title>Kalendář svícení Petřínské rozhledny</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link type="text/css" rel="stylesheet" href="./main.css">
+    <meta name="theme-color" content="#00a3c0" />
+
     <link rel="icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&display=swap" rel="stylesheet"> 
+
+    <link type="text/css" rel="stylesheet" href="./styles/main.css">
+    <link type="text/css" rel="stylesheet" href="./styles/swiper-bundle.min.css">
   </head>
-  <body>
+  <body class="spring">
+    <div class="main-nav">
+      <a href="./" class="logo"></a>
+      <div class="main-nav-container">
+        <div class="main-nav-items">
+          <ul class="list-unstyled">
+            <li><a href="#">
+              <span data-language="cs">Kalendář</span>
+              <span data-language="en">Calendar</span>
+              <span data-language="ua">Календар</span>
+            </a></li>
+            <li><a href="#">
+              <span data-language="cs">O projektu</span>
+              <span data-language="en">About</span>
+              <span data-language="ua">Про проект</span>
+            </a></li>
+            <li><a href="#">
+              <span data-language="cs">Kontakty</span>
+              <span data-language="en">Contact</span>
+              <span data-language="ua">Контакти</span>
+            </a></li>
+          </ul>
+        </div> <!-- .main-nav-items -->
+        <div class="social-links">
+          <ul class="list-unstyled">
+            <li><a
+              class="social-facebook"
+              href="https://www.facebook.com/prahasviti/"
+              target="_blank"
+            ></a></li>
+            <li><a
+              class="social-linkedin"
+              href="https://www.linkedin.com/company/prahasviti/"
+              target="_blank"
+            ></a></li>
+            <li><a
+              class="social-instagram"
+              href="https://www.instagram.com/thmp.cz/"
+              target="_blank"
+            ></a></li>
+            <li><a
+              class="social-youtube"
+              href="https://www.youtube.com/channel/UCT3rmO-i83IfPrfG7u5d45g"
+              target="_blank"
+            ></a></li>
+          </ul>
+        </div> <!-- .social-links -->
+      </div> <!-- .main-nav-container -->
+      <div class="languages">
+        <div class="active-language">
+          <span data-language="cs">CS</span>
+          <span data-language="en">EN</span>
+          <span data-language="ua">UA</span>
+        </div>
+        <div class="language-dropdown">
+          <ul class="list-unstyled">
+            <li>
+              <a href="javascript:void(0);" data-set-language="cs">CS</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" data-set-language="en">EN</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" data-set-language="ua">UA</a>
+            </li>
+          </ul>
+        </div> <!-- .language-dropdown -->
+      </div> <!-- .languages -->
+      <a href="javascript:void(0);" class="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div> <!-- .main-nav -->
+    <div class="main-nav-instead"></div>
+    <div class="main-nav-backdrop"></div>
+
     <div class="calendar-items">
       <a href="#czech" class="calendar-item" data-color-scheme="czech">
         <strong class="calendar-item-title">Česká vlajka</strong>
@@ -25,6 +108,28 @@
         <span class="calendar-item-img"><img src="./images/flag-lgbt.png" alt=""></span>
       </a>
     </div> <!-- .calendar-items -->
+
+    <script>
+      // Main nav
+      document.querySelector('.nav-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('nav-in');
+      });
+      document.querySelector('.main-nav-backdrop').addEventListener('click', function() {
+        document.body.classList.remove('nav-in');
+      });
+
+      // Language switcher
+      document.querySelectorAll('a[data-set-language]').forEach(element => {
+        element.addEventListener('click', function() {
+          const language = element.getAttribute('data-set-language');
+          document.documentElement.setAttribute('lang', language);
+        });
+      });
+    </script>
+
+    <script type="module">
+      import Swiper from './scripts/swiper.min.js';
+    </script>
 
     <script type="module">
       import * as THREE from './scripts/three.module.js';
