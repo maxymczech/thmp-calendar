@@ -77,11 +77,11 @@ import Swiper from './swiper.min.js';
 
       // Populate calendar
       document.addEventListener('click', function(event) {
-        const dv = formatDate(d)
+        const dv = formatDate(d);
         if (
-          event.target.getAttribute('data-date') === dv ||
-          event.target.parentNode.getAttribute('data-date') === dv ||
-          event.target.parentNode.parentNode.getAttribute('data-date') === dv
+          event?.target?.getAttribute?.('data-date') === dv ||
+          event?.target?.parentNode?.getAttribute?.('data-date') === dv ||
+          event?.target?.parentNode?.parentNode?.getAttribute?.('data-date') === dv
         ) {
           Fancybox.close();
           selectEvent(doc);
