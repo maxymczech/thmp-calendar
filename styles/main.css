@@ -651,6 +651,24 @@ table.calendar th {
   width: calc(100% / 7);
 }
 
+table.calendar td:first-child,
+table.calendar th:first-child {
+  border-left: none;
+}
+
+table.calendar td:last-child,
+table.calendar th:last-child {
+  border-right: none;
+}
+
+table.calendar tr:first-child th {
+  border-top: none;
+}
+
+table.calendar tr:last-child td {
+  border-bottom: none;
+}
+
 table.calendar td:nth-child(6),
 table.calendar td:nth-child(7),
 table.calendar th:nth-child(6),
@@ -760,6 +778,8 @@ body.winter table.calendar td.active { background-color: #01AECC; }
   background-size: cover;
   border-radius: 3px;
   height: 32px;
+  margin: 0 auto;
+  width: 40px;
 }
 
 /* * XXSmall devices (landscape phones, 390px and up) * */
@@ -1079,6 +1099,15 @@ body.winter table.calendar td.active { background-color: #01AECC; }
   table.calendar th {
     font-size: 18px;
     padding: 8px;
+  }
+
+  .calendar-cell-name {
+    font-size: 14px;
+  }
+
+  .calendar-cell-flag {
+    width: 80px;
+    height: 54px;
   }
 }
 
