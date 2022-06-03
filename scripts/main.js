@@ -128,6 +128,11 @@ import Swiper from './swiper.min.js';
     const data = doc.data();
     setSeason(data.date.toDate());
 
+    try {
+      fetch(`http://raspberrypi/?rgb=${data.ledColorString}`);
+    } catch(error) {
+    }
+
     const c1 = new THREE.Color(data.fixtures[1]);
     const c2 = new THREE.Color(data.fixtures[2]);
     const c3 = new THREE.Color(data.fixtures[3]);
